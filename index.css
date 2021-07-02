@@ -1,9 +1,5 @@
 body {
     background-color: rgb(251, 255, 235);
-    display: flex;
-    justify-content: center; 
-    margin: 0 auto;
-    width: 50vw;
 }
 
 :root {
@@ -21,9 +17,18 @@ body {
     --black-color: #000;
 }
 
+.main {
+    display: flex;
+    justify-content: center; 
+    margin: 25vh auto;
+    width: 50vw;
+    height: 50vh;
+}
+
 .my-kirby {
     position: relative;
-    top: 20vh;
+    transform: scale(0.75);
+    -webkit-transform: scale(0.75);
 }
 
 .head {
