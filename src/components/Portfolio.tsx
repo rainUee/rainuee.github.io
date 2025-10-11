@@ -8,7 +8,7 @@ const Portfolio = () => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     const handleScroll = () => {
@@ -62,7 +62,7 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 relative overflow-hidden">
       {/* Animated gradient orbs */}
-      <div 
+      <div
         className="fixed w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"
         style={{
           top: '10%',
@@ -70,7 +70,7 @@ const Portfolio = () => {
           transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
         }}
       />
-      <div 
+      <div
         className="fixed w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"
         style={{
           top: '50%',
@@ -79,7 +79,7 @@ const Portfolio = () => {
           transform: `translate(${-mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
         }}
       />
-      <div 
+      <div
         className="fixed w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"
         style={{
           bottom: '10%',
@@ -90,7 +90,7 @@ const Portfolio = () => {
       />
 
       {/* Custom cursor effect */}
-      <div 
+      <div
         className="fixed w-8 h-8 border-2 border-purple-400 rounded-full pointer-events-none z-50 transition-all duration-200"
         style={{
           left: mousePosition.x - 16,
@@ -105,7 +105,7 @@ const Portfolio = () => {
           <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
             SH.
           </div>
-          
+
           <div className="hidden md:flex gap-8 items-center">
             <a href="#home" className="text-gray-700 hover:text-purple-600 transition relative group">
               Home
@@ -119,15 +119,15 @@ const Portfolio = () => {
               Projects
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full" />
             </a>
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full hover:shadow-lg transition transform hover:scale-105"
             >
               Contact
             </a>
           </div>
 
-          <button 
+          <button
             className="md:hidden text-gray-700"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -160,18 +160,18 @@ const Portfolio = () => {
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-2xl opacity-30 animate-pulse" />
             </div>
-            
+
             <div className="space-y-4">
               <h1 className="text-6xl md:text-8xl font-bold text-gray-900 animate-fade-in">
-                Hi, I'm{' '}
+                Hi, I&apos;m{' '}
                 <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
                   Shiyu Huang
                 </span>
               </h1>
-              
+
               <div className="h-1 w-32 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full" />
             </div>
-            
+
             <p className="text-xl md:text-3xl text-gray-600 max-w-3xl mx-auto font-light">
               Full Stack Developer crafting{' '}
               <span className="text-purple-600 font-semibold">beautiful</span> and{' '}
@@ -179,19 +179,19 @@ const Portfolio = () => {
             </p>
 
             <div className="flex gap-4 justify-center pt-6">
-              <a 
-                href="https://github.com" 
+              <a
+                href="https://github.com"
                 className="group p-4 bg-white hover:bg-gradient-to-br hover:from-purple-100 hover:to-pink-100 rounded-full transition shadow-lg hover:shadow-xl transform hover:scale-110"
               >
                 <Github size={24} className="text-purple-600 group-hover:text-purple-700" />
               </a>
-              <a 
-                href="https://linkedin.com" 
+              <a
+                href="https://linkedin.com"
                 className="group p-4 bg-white hover:bg-gradient-to-br hover:from-purple-100 hover:to-pink-100 rounded-full transition shadow-lg hover:shadow-xl transform hover:scale-110"
               >
                 <Linkedin size={24} className="text-purple-600 group-hover:text-purple-700" />
               </a>
-              <a 
+              <a
                 href="mailto:your@email.com"
                 className="group p-4 bg-white hover:bg-gradient-to-br hover:from-purple-100 hover:to-pink-100 rounded-full transition shadow-lg hover:shadow-xl transform hover:scale-110"
               >
@@ -218,18 +218,18 @@ const Portfolio = () => {
             </h2>
             <div className="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full" />
           </div>
-          
+
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-xl border border-purple-100/50">
             <div className="space-y-6 text-lg text-gray-700">
               <p className="text-xl leading-relaxed">
-                I'm a passionate developer who loves building beautiful and functional web applications. 
+                I&apos;m a passionate developer who loves building beautiful and functional web applications.
                 With expertise in modern web technologies, I create solutions that make a difference.
               </p>
-              
+
               <p className="text-xl leading-relaxed">
                 I specialize in{' '}
-                <span className="text-purple-600 font-semibold">JavaScript, React, and Node.js</span>, 
-                and I'm always excited to learn new technologies and tackle challenging problems.
+                <span className="text-purple-600 font-semibold">JavaScript, React, and Node.js</span>,
+                and I&apos;m always excited to learn new technologies and tackle challenging problems.
               </p>
             </div>
 
@@ -238,7 +238,7 @@ const Portfolio = () => {
               <h3 className="text-3xl font-bold text-center mb-8 text-gray-900">Tech Stack</h3>
               <div className="flex flex-wrap gap-4 justify-center">
                 {skills.map((skill, index) => (
-                  <span 
+                  <span
                     key={index}
                     className="group px-6 py-3 bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 text-purple-700 rounded-full font-medium shadow-md hover:shadow-xl transition transform hover:scale-110 cursor-pointer relative overflow-hidden"
                     style={{ animationDelay: `${index * 0.1}s` }}
@@ -263,23 +263,23 @@ const Portfolio = () => {
             <div className="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full mb-4" />
             <p className="text-gray-600 text-lg">Some of my favorite work</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
-              <div 
+              <div
                 key={index}
                 className="group relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 border border-purple-100/50 overflow-hidden"
               >
                 <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${project.gradient}`} />
-                
+
                 <div className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${project.gradient} rounded-full opacity-20 group-hover:opacity-30 transition blur-2xl`} />
-                
+
                 <h3 className="text-2xl font-bold mb-3 text-gray-900 relative z-10">{project.title}</h3>
                 <p className="text-gray-600 mb-4 relative z-10">{project.description}</p>
-                
+
                 <div className="flex flex-wrap gap-2 mb-6 relative z-10">
                   {project.tech.map((tech, i) => (
-                    <span 
+                    <span
                       key={i}
                       className="px-4 py-1 bg-gradient-to-r from-purple-50 to-pink-50 text-purple-600 rounded-full text-sm font-medium"
                     >
@@ -287,16 +287,16 @@ const Portfolio = () => {
                     </span>
                   ))}
                 </div>
-                
+
                 <div className="flex gap-4 relative z-10">
-                  <a 
+                  <a
                     href={project.github}
                     className="flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700 transition font-medium"
                   >
                     <Github size={18} />
                     Code
                   </a>
-                  <a 
+                  <a
                     href={project.link}
                     className="flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700 transition font-medium"
                   >
@@ -315,14 +315,14 @@ const Portfolio = () => {
         <div className="max-w-2xl mx-auto text-center">
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-12 shadow-2xl border border-purple-100/50">
             <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Let's Connect
+              Let&apos;s Connect
             </h2>
             <div className="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full mb-8" />
             <p className="text-lg text-gray-600 mb-8">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
             </p>
-            
-            <a 
+
+            <a
               href="mailto:your@email.com"
               className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-full font-semibold transition shadow-lg hover:shadow-2xl transform hover:scale-105"
             >
