@@ -5,20 +5,14 @@ import { Code, Github, Linkedin, Mail, ExternalLink, ArrowRight, Menu, X, Sparkl
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
     window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -58,6 +52,37 @@ const Portfolio = () => {
   ];
 
   const skills = ["JavaScript", "React", "Python", "Node.js", "TypeScript", "Next.js", "Vue.js", "TailwindCSS"];
+
+  const experiences = [
+    {
+      company: 'Dalhousie University',
+      role: 'MACS Student',
+      period: 'Sep. 2024 – Present',
+      details: [
+        'Expanding expertise into full-stack development and cloud technologies through hands-on projects',
+      ]
+    },
+    {
+      company: 'Garena Online Private Limited',
+      role: 'Front-End Engineer',
+      period: 'Feb. 2022 – Nov. 2022',
+      details: [
+        'Built DevOps CMDB platform with React & TypeScript for real-time infrastructure monitoring',
+        'Created low-code page builder using JSON Schema, reducing development time by 30%',
+        'Refactored legacy PHP codebase into maintainable object-oriented architecture'
+      ]
+    },
+    {
+      company: 'Tezign (Shanghai) Information Technology',
+      role: 'Front-End Engineer',
+      period: 'Aug. 2020 – Jan. 2022',
+      details: [
+        'Developed Digital Asset Management SaaS platform with React + TypeScript',
+        'Optimized state management with Zustand, improving home render by 25% and list load by 0.8s',
+        'Established CI/CD pipeline with Jenkins & Docker for automated deployments'
+      ]
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 relative overflow-hidden">
@@ -115,6 +140,10 @@ const Portfolio = () => {
               About
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full" />
             </a>
+            <a href="#experience" className="text-gray-700 hover:text-purple-600 transition relative group">
+              Experience
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full" />
+            </a>
             <a href="#projects" className="text-gray-700 hover:text-purple-600 transition relative group">
               Projects
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full" />
@@ -140,6 +169,7 @@ const Portfolio = () => {
             <div className="flex flex-col gap-4 px-6 py-4">
               <a href="#home" className="text-gray-700 hover:text-purple-600">Home</a>
               <a href="#about" className="text-gray-700 hover:text-purple-600">About</a>
+              <a href="#experience" className="text-gray-700 hover:text-purple-600">Experience</a>
               <a href="#projects" className="text-gray-700 hover:text-purple-600">Projects</a>
               <a href="#contact" className="text-gray-700 hover:text-purple-600">Contact</a>
             </div>
@@ -209,6 +239,7 @@ const Portfolio = () => {
         </div>
       </section>
 
+
       {/* About Section */}
       <section id="about" className="relative py-20 px-6">
         <div className="max-w-4xl mx-auto">
@@ -248,6 +279,92 @@ const Portfolio = () => {
                   </span>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="relative py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              Experience
+            </h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full" />
+          </div>
+
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-purple-300 to-pink-300 opacity-40" />
+
+            <div className="space-y-12">
+              {experiences.map((exp, idx) => (
+                <div key={idx} className="relative md:grid md:grid-cols-9 md:items-start">
+                  {/* Left column (desktop): show card on left for even items */}
+                  <div className={`hidden md:block md:col-span-4 md:pr-8 ${idx % 2 === 0 ? 'md:text-right' : ''}`}>
+                    {idx % 2 === 0 ? (
+                      <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-purple-100/50 hover:shadow-2xl transition text-left">
+                        <div className="text-sm text-purple-600 font-medium mb-2">{exp.period}</div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-1">{exp.role}</h4>
+                        <p className="text-sm text-gray-700 mb-3 font-medium">{exp.company}</p>
+                        <ul className="list-disc list-inside text-gray-700 space-y-2">
+                          {exp.details.map((d, i) => (
+                            <li key={i}>{d}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
+                  </div>
+
+                  {/* Center marker column */}
+                  <div className="md:col-span-1 flex justify-center md:justify-center my-4">
+                    <div className="relative">
+                      {/* marker with left/right variant and connector */}
+                      <div
+                        className={`w-4 h-4 rounded-full shadow-md mx-auto transform transition-transform duration-200 hover:scale-110 ${idx % 2 === 0 ? 'bg-purple-300 border-4 border-purple-100' : 'bg-pink-300 border-4 border-pink-100'}`}
+                        style={{ boxShadow: idx % 2 === 0 ? '0 6px 20px rgba(139,92,246,0.15)' : '0 6px 20px rgba(236,72,153,0.12)' }}
+                      />
+                      {/* connector line (desktop only) */}
+                      {idx % 2 === 0 ? (
+                        <div className="hidden md:block absolute -right-16 top-1/2 transform -translate-y-1/2 h-0.5 w-12 bg-gradient-to-r from-purple-200 to-transparent" />
+                      ) : (
+                        <div className="hidden md:block absolute -left-16 top-1/2 transform -translate-y-1/2 h-0.5 w-12 bg-gradient-to-l from-pink-200 to-transparent" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Right column (desktop): show card on right for odd items */}
+                  <div className={`hidden md:block md:col-span-4 md:pl-8 ${idx % 2 === 1 ? '' : ''}`}>
+                    {idx % 2 === 1 ? (
+                      <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-purple-100/50 hover:shadow-2xl transition text-left">
+                        <div className="text-sm text-purple-600 font-medium mb-2">{exp.period}</div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-1">{exp.role}</h4>
+                        <p className="text-sm text-gray-700 mb-3 font-medium">{exp.company}</p>
+                        <ul className="list-disc list-inside text-gray-700 space-y-2">
+                          {exp.details.map((d, i) => (
+                            <li key={i}>{d}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
+                  </div>
+
+                  {/* Mobile / stacked card (always full width) */}
+                  <div className="md:hidden">
+                    <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-purple-100/50 hover:shadow-2xl transition text-left">
+                      <div className="text-sm text-purple-600 font-medium mb-2">{exp.period}</div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-1">{exp.role}</h4>
+                      <p className="text-sm text-gray-700 mb-3 font-medium">{exp.company}</p>
+                      <ul className="list-disc list-inside text-gray-700 space-y-2">
+                        {exp.details.map((d, i) => (
+                          <li key={i}>{d}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -359,6 +476,13 @@ const Portfolio = () => {
         .animate-gradient {
           background-size: 200% auto;
           animation: gradient 3s ease infinite;
+        }
+        /* Smooth scrolling and adjust for fixed nav */
+        html {
+          scroll-behavior: smooth;
+        }
+        section {
+          scroll-margin-top: 6rem; /* compensate for fixed nav height */
         }
       `}</style>
     </div>
