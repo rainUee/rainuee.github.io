@@ -23,6 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/icon.svg" />
+        <link rel="mask-icon" href="/icon.svg" color="#7c3aed" />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );

@@ -19,32 +19,32 @@ export const projects: Project[] = [
     title: "Url Shortener ",
     description: "A serverless URL shortener built with AWS services",
     tech: ["React", "Python", "AWS", "Terraform"],
-    link: "#",
+    link: "https://github.com/rainUee/url-shortener",
     github: "https://github.com/rainUee/url-shortener",
     gradient: "from-purple-400 to-pink-400"
   },
   {
-    title: "E-commerce Platform",
-    description: "Full-stack shopping platform with seamless payments",
-    tech: ["Next.js", "PostgreSQL", "Stripe"],
-    link: "#",
-    github: "#",
+    title: "DocuMind - AI Document Q&A Platform ",
+    description: "An AI-powered platform for document-based question answering.",
+    tech: ["LLM", "Python", "AWS"],
+    link: "https://github.com/rainUee/twitch-clone",
+    github: "https://github.com/rainUee/twitch-clone",
     gradient: "from-blue-400 to-purple-400"
   },
   {
-    title: "Weather Dashboard",
-    description: "Beautiful weather forecast with data visualization",
-    tech: ["React", "D3.js", "API"],
-    link: "#",
-    github: "#",
+    title: "Echoes",
+    description: "A mindful memo application designed to help users capture, organize, and reflect on their thoughts, memories, and goals.",
+    tech: ["TypeScript", "React Native", "Firebase", "Expo"],
+    link: "https://github.com/rainUee/Echoes",
+    github: "https://github.com/rainUee/Echoes",
     gradient: "from-pink-400 to-purple-400"
   },
   {
-    title: "Task Management",
-    description: "Collaborative project tool with real-time sync",
-    tech: ["Vue.js", "Firebase"],
-    link: "#",
-    github: "#",
+    title: "Twitch Clone",
+    description: "A live streaming platform clone featuring real-time chat and video streaming capabilities.",
+    tech: ["React", "MongoDB", "WebSockets", "Express.js", "Node.js"],
+    link: "https://github.com/rainUee/twitch-clone",
+    github: "https://github.com/rainUee/twitch-clone",
     gradient: "from-purple-400 to-indigo-400"
   }
 ];
