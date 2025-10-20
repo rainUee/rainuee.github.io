@@ -1,9 +1,16 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import { Code, Github, Linkedin, Mail, ExternalLink, ArrowRight, Menu, X, Sparkles } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
+import ExperienceTimeline from './ExperienceTimeline';
+import Nav from './Nav';
+import Hero from './Hero';
+import About from './About';
+import Projects from './Projects';
+import Contact from './Contact';
+import { projects, experiences, about, skills, hero } from '../data/siteData';
 
 const Portfolio = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // menu state moved into Nav component
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -15,74 +22,6 @@ const Portfolio = () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
-
-  const projects = [
-    {
-      title: "AI Chat Application",
-      description: "Real-time chat powered by GPT API with advanced features",
-      tech: ["React", "Node.js", "OpenAI"],
-      link: "#",
-      github: "#",
-      gradient: "from-purple-400 to-pink-400"
-    },
-    {
-      title: "E-commerce Platform",
-      description: "Full-stack shopping platform with seamless payments",
-      tech: ["Next.js", "PostgreSQL", "Stripe"],
-      link: "#",
-      github: "#",
-      gradient: "from-blue-400 to-purple-400"
-    },
-    {
-      title: "Weather Dashboard",
-      description: "Beautiful weather forecast with data visualization",
-      tech: ["React", "D3.js", "API"],
-      link: "#",
-      github: "#",
-      gradient: "from-pink-400 to-purple-400"
-    },
-    {
-      title: "Task Management",
-      description: "Collaborative project tool with real-time sync",
-      tech: ["Vue.js", "Firebase"],
-      link: "#",
-      github: "#",
-      gradient: "from-purple-400 to-indigo-400"
-    }
-  ];
-
-  const skills = ["JavaScript", "React", "Python", "Node.js", "TypeScript", "Next.js", "Vue.js", "TailwindCSS"];
-
-  const experiences = [
-    {
-      company: 'Dalhousie University',
-      role: 'MACS Student',
-      period: 'Sep. 2024 – Present',
-      details: [
-        'Expanding expertise into full-stack development and cloud technologies through hands-on projects',
-      ]
-    },
-    {
-      company: 'Garena Online Private Limited',
-      role: 'Front-End Engineer',
-      period: 'Feb. 2022 – Nov. 2022',
-      details: [
-        'Built DevOps CMDB platform with React & TypeScript for real-time infrastructure monitoring',
-        'Created low-code page builder using JSON Schema, reducing development time by 30%',
-        'Refactored legacy PHP codebase into maintainable object-oriented architecture'
-      ]
-    },
-    {
-      company: 'Tezign (Shanghai) Information Technology',
-      role: 'Front-End Engineer',
-      period: 'Aug. 2020 – Jan. 2022',
-      details: [
-        'Developed Digital Asset Management SaaS platform with React + TypeScript',
-        'Optimized state management with Zustand, improving home render by 25% and list load by 0.8s',
-        'Established CI/CD pipeline with Jenkins & Docker for automated deployments'
-      ]
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 relative overflow-hidden">
@@ -124,344 +63,30 @@ const Portfolio = () => {
         }}
       />
 
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/70 backdrop-blur-xl z-40 border-b border-purple-100/50 shadow-sm">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            SH.
-          </div>
+      <Nav />
 
-          <div className="hidden md:flex gap-8 items-center">
-            <a href="#home" className="text-gray-700 hover:text-purple-600 transition relative group">
-              Home
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full" />
-            </a>
-            <a href="#about" className="text-gray-700 hover:text-purple-600 transition relative group">
-              About
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full" />
-            </a>
-            <a href="#experience" className="text-gray-700 hover:text-purple-600 transition relative group">
-              Experience
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full" />
-            </a>
-            <a href="#projects" className="text-gray-700 hover:text-purple-600 transition relative group">
-              Projects
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full" />
-            </a>
-            <a
-              href="#contact"
-              className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full hover:shadow-lg transition transform hover:scale-105"
-            >
-              Contact
-            </a>
-          </div>
+      <Hero name={hero.name} tagline={hero.tagline} links={hero.links} />
 
-          <button
-            className="md:hidden text-gray-700"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+      <About about={about} skills={skills} />
 
-        {isMenuOpen && (
-          <div className="md:hidden bg-white/90 backdrop-blur-xl border-t border-purple-100/50">
-            <div className="flex flex-col gap-4 px-6 py-4">
-              <a href="#home" className="text-gray-700 hover:text-purple-600">Home</a>
-              <a href="#about" className="text-gray-700 hover:text-purple-600">About</a>
-              <a href="#experience" className="text-gray-700 hover:text-purple-600">Experience</a>
-              <a href="#projects" className="text-gray-700 hover:text-purple-600">Projects</a>
-              <a href="#contact" className="text-gray-700 hover:text-purple-600">Contact</a>
-            </div>
-          </div>
-        )}
-      </nav>
+      <ExperienceTimeline items={experiences} />
 
-      {/* Hero Section */}
-      <section id="home" className="relative pt-32 pb-20 px-6 min-h-screen flex items-center">
-        <div className="max-w-6xl mx-auto w-full">
-          <div className="text-center space-y-8">
-            {/* Animated avatar */}
-            <div className="inline-block relative">
-              <div className="w-32 h-32 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center animate-pulse shadow-2xl relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent" />
-                <Code size={48} className="text-white relative z-10" />
-                <Sparkles size={20} className="text-white absolute top-2 right-2 animate-ping" />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-2xl opacity-30 animate-pulse" />
-            </div>
+      <Projects projects={projects} />
 
-            <div className="space-y-4">
-              <h1 className="text-6xl md:text-8xl font-bold text-gray-900 animate-fade-in">
-                Hi, I&apos;m{' '}
-                <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
-                  Shiyu Huang
-                </span>
-              </h1>
-
-              <div className="h-1 w-32 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full" />
-            </div>
-
-            <p className="text-xl md:text-3xl text-gray-600 max-w-3xl mx-auto font-light">
-              Full Stack Developer crafting{' '}
-              <span className="text-purple-600 font-semibold">beautiful</span> and{' '}
-              <span className="text-pink-600 font-semibold">innovative</span> digital experiences
-            </p>
-
-            <div className="flex gap-4 justify-center pt-6">
-              <a
-                href="https://github.com"
-                className="group p-4 bg-white hover:bg-gradient-to-br hover:from-purple-100 hover:to-pink-100 rounded-full transition shadow-lg hover:shadow-xl transform hover:scale-110"
-              >
-                <Github size={24} className="text-purple-600 group-hover:text-purple-700" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                className="group p-4 bg-white hover:bg-gradient-to-br hover:from-purple-100 hover:to-pink-100 rounded-full transition shadow-lg hover:shadow-xl transform hover:scale-110"
-              >
-                <Linkedin size={24} className="text-purple-600 group-hover:text-purple-700" />
-              </a>
-              <a
-                href="mailto:your@email.com"
-                className="group p-4 bg-white hover:bg-gradient-to-br hover:from-purple-100 hover:to-pink-100 rounded-full transition shadow-lg hover:shadow-xl transform hover:scale-110"
-              >
-                <Mail size={24} className="text-purple-600 group-hover:text-purple-700" />
-              </a>
-            </div>
-
-            {/* Scroll indicator */}
-            <div className="pt-12 animate-bounce">
-              <div className="w-6 h-10 border-2 border-purple-400 rounded-full mx-auto flex justify-center">
-                <div className="w-1 h-3 bg-purple-400 rounded-full mt-2 animate-pulse" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* About Section */}
-      <section id="about" className="relative py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              About Me
-            </h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full" />
-          </div>
-
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-xl border border-purple-100/50">
-            <div className="space-y-6 text-lg text-gray-700">
-              <p className="text-xl leading-relaxed">
-                I&apos;m a passionate developer who loves building beautiful and functional web applications.
-                With expertise in modern web technologies, I create solutions that make a difference.
-              </p>
-
-              <p className="text-xl leading-relaxed">
-                I specialize in{' '}
-                <span className="text-purple-600 font-semibold">JavaScript, React, and Node.js</span>,
-                and I&apos;m always excited to learn new technologies and tackle challenging problems.
-              </p>
-            </div>
-
-            {/* Skills with fancy design */}
-            <div className="mt-12">
-              <h3 className="text-3xl font-bold text-center mb-8 text-gray-900">Tech Stack</h3>
-              <div className="flex flex-wrap gap-4 justify-center">
-                {skills.map((skill, index) => (
-                  <span
-                    key={index}
-                    className="group px-6 py-3 bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 text-purple-700 rounded-full font-medium shadow-md hover:shadow-xl transition transform hover:scale-110 cursor-pointer relative overflow-hidden"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <span className="relative z-10">{skill}</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 group-hover:opacity-20 transition" />
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="relative py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Experience
-            </h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full" />
-          </div>
-
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-purple-300 to-pink-300 opacity-40" />
-
-            <div className="space-y-12">
-              {experiences.map((exp, idx) => (
-                <div key={idx} className="relative md:grid md:grid-cols-9 md:items-start">
-                  {/* Left column (desktop): show card on left for even items */}
-                  <div className={`hidden md:block md:col-span-4 md:pr-8 ${idx % 2 === 0 ? 'md:text-right' : ''}`}>
-                    {idx % 2 === 0 ? (
-                      <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-purple-100/50 hover:shadow-2xl transition text-left">
-                        <div className="text-sm text-purple-600 font-medium mb-2">{exp.period}</div>
-                        <h4 className="text-lg font-semibold text-gray-900 mb-1">{exp.role}</h4>
-                        <p className="text-sm text-gray-700 mb-3 font-medium">{exp.company}</p>
-                        <ul className="list-disc list-inside text-gray-700 space-y-2">
-                          {exp.details.map((d, i) => (
-                            <li key={i}>{d}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
-                  </div>
-
-                  {/* Center marker column */}
-                  <div className="md:col-span-1 flex justify-center md:justify-center my-4">
-                    <div className="relative">
-                      {/* marker with left/right variant and connector */}
-                      <div
-                        className={`w-4 h-4 rounded-full shadow-md mx-auto transform transition-transform duration-200 hover:scale-110 ${idx % 2 === 0 ? 'bg-purple-300 border-4 border-purple-100' : 'bg-pink-300 border-4 border-pink-100'}`}
-                        style={{ boxShadow: idx % 2 === 0 ? '0 6px 20px rgba(139,92,246,0.15)' : '0 6px 20px rgba(236,72,153,0.12)' }}
-                      />
-                      {/* connector line (desktop only) */}
-                      {idx % 2 === 0 ? (
-                        <div className="hidden md:block absolute -right-16 top-1/2 transform -translate-y-1/2 h-0.5 w-12 bg-gradient-to-r from-purple-200 to-transparent" />
-                      ) : (
-                        <div className="hidden md:block absolute -left-16 top-1/2 transform -translate-y-1/2 h-0.5 w-12 bg-gradient-to-l from-pink-200 to-transparent" />
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Right column (desktop): show card on right for odd items */}
-                  <div className={`hidden md:block md:col-span-4 md:pl-8 ${idx % 2 === 1 ? '' : ''}`}>
-                    {idx % 2 === 1 ? (
-                      <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-purple-100/50 hover:shadow-2xl transition text-left">
-                        <div className="text-sm text-purple-600 font-medium mb-2">{exp.period}</div>
-                        <h4 className="text-lg font-semibold text-gray-900 mb-1">{exp.role}</h4>
-                        <p className="text-sm text-gray-700 mb-3 font-medium">{exp.company}</p>
-                        <ul className="list-disc list-inside text-gray-700 space-y-2">
-                          {exp.details.map((d, i) => (
-                            <li key={i}>{d}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
-                  </div>
-
-                  {/* Mobile / stacked card (always full width) */}
-                  <div className="md:hidden">
-                    <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-purple-100/50 hover:shadow-2xl transition text-left">
-                      <div className="text-sm text-purple-600 font-medium mb-2">{exp.period}</div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-1">{exp.role}</h4>
-                      <p className="text-sm text-gray-700 mb-3 font-medium">{exp.company}</p>
-                      <ul className="list-disc list-inside text-gray-700 space-y-2">
-                        {exp.details.map((d, i) => (
-                          <li key={i}>{d}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="relative py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Featured Projects
-            </h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full mb-4" />
-            <p className="text-gray-600 text-lg">Some of my favorite work</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="group relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 border border-purple-100/50 overflow-hidden"
-              >
-                <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${project.gradient}`} />
-
-                <div className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${project.gradient} rounded-full opacity-20 group-hover:opacity-30 transition blur-2xl`} />
-
-                <h3 className="text-2xl font-bold mb-3 text-gray-900 relative z-10">{project.title}</h3>
-                <p className="text-gray-600 mb-4 relative z-10">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-6 relative z-10">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-4 py-1 bg-gradient-to-r from-purple-50 to-pink-50 text-purple-600 rounded-full text-sm font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-4 relative z-10">
-                  <a
-                    href={project.github}
-                    className="flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700 transition font-medium"
-                  >
-                    <Github size={18} />
-                    Code
-                  </a>
-                  <a
-                    href={project.link}
-                    className="flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700 transition font-medium"
-                  >
-                    <ExternalLink size={18} />
-                    Demo
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="relative py-20 px-6">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-12 shadow-2xl border border-purple-100/50">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Let&apos;s Connect
-            </h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full mb-8" />
-            <p className="text-lg text-gray-600 mb-8">
-              I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-            </p>
-
-            <a
-              href="mailto:your@email.com"
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-full font-semibold transition shadow-lg hover:shadow-2xl transform hover:scale-105"
-            >
-              Say Hello
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition" />
-            </a>
-          </div>
-        </div>
-      </section>
+      <Contact />
 
       {/* Footer */}
       <footer className="relative py-8 px-6 border-t border-purple-100/50 bg-white/50 backdrop-blur-xl">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-600">© 2025 Shiyu Huang. Crafted with 💜</p>
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-600">© 2025 {hero.name}. Crafted with 💜</p>
           <div className="flex gap-4">
-            <a href="https://github.com" className="text-gray-600 hover:text-purple-600 transition transform hover:scale-110">
+            <a href={hero.links.github} className="text-gray-600 hover:text-purple-600 transition transform hover:scale-110">
               <Github size={20} />
             </a>
-            <a href="https://linkedin.com" className="text-gray-600 hover:text-purple-600 transition transform hover:scale-110">
+            <a href={hero.links.linkedin} className="text-gray-600 hover:text-purple-600 transition transform hover:scale-110">
               <Linkedin size={20} />
             </a>
-            <a href="mailto:your@email.com" className="text-gray-600 hover:text-purple-600 transition transform hover:scale-110">
+            <a href={hero.links.mail} className="text-gray-600 hover:text-purple-600 transition transform hover:scale-110">
               <Mail size={20} />
             </a>
           </div>
